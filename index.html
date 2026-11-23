@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>Soft Cam</title>
+<meta name="description" content="淡黄色复古 iPhone 质感相机：Soft 微曝滤镜、实况、闪光、多人自然瘦脸">
+<meta name="theme-color" content="#F4F4F2">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Soft Cam">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13.2 2.5 5.5 13.2h5.6l-1.3 8.3 7.7-10.7h-5.6z" fill="currentColor"/></symbol>
+  <symbol id="i-live" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.6" fill="currentColor"/><circle cx="12" cy="12" r="5.6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="1.6 2.1"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="m6 14.5 6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-tune" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2.2"/><circle cx="9" cy="17" r="2.2"/></g></symbol>
+  <symbol id="i-flip" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 9.5A8 8 0 0 1 19 8"/><path d="M19 4v4h-4"/><path d="M19.5 14.5A8 8 0 0 1 5 16"/><path d="M5 20v-4h4"/></g></symbol>
+  <symbol id="i-wide" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H4v5M15 20h5v-5"/><path d="M4 4l6 6M20 20l-6-6"/></g></symbol>
+  <symbol id="i-narrow" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 5v5H5M14 19v-5h5"/><path d="M4 4l6 6M20 20l-6-6"/></g></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4" fill="currentColor"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.5 1.5M17.2 17.2l1.5 1.5M5.3 18.7l1.5-1.5M17.2 6.8l1.5-1.5"/></g></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 4.5 7.5 12l7.5 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7.5 7.5 12 3l4.5 4.5"/><path d="M8 11H6a1.5 1.5 0 0 0-1.5 1.5v7A1.5 1.5 0 0 0 6 21h12a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 18 11h-2"/></g></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5h16M9.5 6.5V4.5h5v2M6 6.5l1 13.5h10l1-13.5M10 10.5v6M14 10.5v6"/></g></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="18.3" r="1" fill="currentColor"/></symbol>
+</svg>
+
+<div id="app">
+  <!-- 相机 -->
+  <section id="cam" class="screen on">
+    <header class="top">
+      <button id="b-flash" class="ic" aria-label="闪光灯"><svg><use href="#i-bolt"/></svg><i class="slash"></i><b class="tag">A</b></button>
+            <div id="rectime" class="rectime">00:00:00</div>
+      <button id="b-more" class="ic chev" aria-label="更多设置"><svg><use href="#i-chev"/></svg></button>
+      <div class="tr"><button id="b-live" class="ic" aria-label="实况"><svg><use href="#i-live"/></svg><i class="slash"></i></button>
+      <button id="b-tune" class="ic" aria-label="调节"><svg><use href="#i-tune"/></svg><i class="dot"></i></button></div>
+    </header>
+    <div id="tray" class="tray" hidden>
+      <div class="trow" data-k="ratio"><span>比例</span><button data-v="3:4">4:3</button><button data-v="1:1">方形</button><button data-v="9:16">16:9</button></div>
+      <div class="trow" data-k="flash"><span>闪光灯</span><button data-v="auto">自动</button><button data-v="on">打开</button><button data-v="off">关闭</button></div>
+      <div class="trow" data-k="timer"><span>定时</span><button data-v="0">关闭</button><button data-v="3">3秒</button><button data-v="10">10秒</button></div>
+      <div class="trow tog">
+        <button data-t="grid">网格</button><button data-t="mirror">镜像前置</button><button data-t="date">日期印</button><button data-t="sound">快门声</button>
+      </div>
+    </div>
+    <main class="stage" id="stage">
+      <div class="vf" id="vf">
+        <canvas id="gl"></canvas>
+        <div class="grid"></div>
+        <div class="badge-live" id="liveon">LIVE</div>
+        <div class="camtag" id="camtag"></div>
+        <div class="datestamp" id="datestamp"></div>
+        <div class="focus" id="focus"><i class="box"></i><div class="sunbar"><i class="line"></i><svg class="sun"><use href="#i-sun"/></svg></div></div>
+        <div class="aelock" id="aelock">自动曝光/自动对焦锁定</div>
+        <div class="count" id="count"></div>
+        <div class="evtip" id="evtip"></div>
+        <div class="zoom" id="zoom"></div>
+        <button class="frontwide" id="frontwide" aria-label="前置广角"><svg><use href="#i-wide"/></svg></button>
+        <div class="nocam" id="nocam">
+          <p>打开相机</p>
+          <small>需要允许使用摄像头</small>
+          <button id="b-start" class="pill">允许并开始</button>
+          <button id="b-import2" class="link">或者导入照片 / 视频</button>
+        </div>
+      </div>
+      <div class="ringlight" id="ringlight"></div>
+    </main>
+    <section class="bottom">
+      <div class="modes" id="modes"><div class="track"><button data-m="video">视频</button><button data-m="photo">照片</button></div></div>
+      <div class="srow">
+        <button id="thumb" class="thumb" aria-label="相册"><img alt=""><span class="pending"></span></button>
+        <button id="shutter" class="shutter" aria-label="快门"><i></i></button>
+        <button id="b-flip" class="ic round" aria-label="切换前后镜头"><svg><use href="#i-flip"/></svg></button>
+      </div>
+    </section>
+    <div id="tune" class="sheet" hidden>
+      <div class="grab"></div>
+      <div class="sliders" id="sliders"></div>
+      <div class="sheetfoot"><button id="b-reset" class="link">恢复默认</button><button id="b-tunedone" class="pill sm">完成</button></div>
+    </div>
+    <div class="flashfill" id="flashfill"></div>
+    <div class="blink" id="blink"></div>
+  </section>
+
+  <!-- 相册 -->
+  <section id="album" class="screen">
+    <header class="nav"><button class="navbtn" id="al-back"><svg><use href="#i-back"/></svg>相机</button><span></span><button class="navbtn" id="al-sel">选择</button></header>
+    <div class="albody">
+      <h1>相册 <small id="al-count"></small></h1>
+      <div class="agrid" id="agrid"></div>
+      <div class="aempty" id="aempty"><p>还没有照片</p><small>拍下的照片会直接放在这里</small></div>
+    </div>
+    <footer class="abar" id="abar">
+      <button class="pill" id="al-import"><svg><use href="#i-plus"/></svg>导入照片 / 视频</button>
+    </footer>
+    <footer class="abar sel" id="abar-sel" hidden>
+      <button class="ic2" id="al-share" disabled><svg><use href="#i-share"/></svg></button>
+      <span id="al-selcount">选择项目</span>
+      <button class="ic2 danger" id="al-del" disabled><svg><use href="#i-trash"/></svg></button>
+    </footer>
+  </section>
+
+  <!-- 查看 -->
+  <section id="viewer" class="screen dark">
+    <header class="nav"><button class="navbtn" id="vw-back"><svg><use href="#i-back"/></svg></button><div class="vtitle"><b id="vw-date"></b><small id="vw-time"></small></div><button class="navbtn" id="vw-edit">编辑</button></header>
+    <div class="vstage" id="vstage"><div class="vstrip" id="vstrip"></div><div class="livetag" id="vw-live">实况 · 长按播放</div></div>
+    <footer class="vbar">
+      <button class="ic2" id="vw-share"><svg><use href="#i-share"/></svg></button>
+      <span id="vw-info"></span>
+      <button class="ic2 danger" id="vw-del"><svg><use href="#i-trash"/></svg></button>
+    </footer>
+  </section>
+
+  <!-- 编辑 -->
+  <section id="editor" class="screen">
+    <header class="nav"><button class="navbtn" id="ed-cancel">取消</button><b id="ed-title">编辑</b><button class="navbtn strong" id="ed-save">存储</button></header>
+    <div class="estage"><canvas id="ed-gl"></canvas><div class="eprog" id="eprog"><i></i><span>处理中…</span></div></div>
+    <div class="ectl">
+      <div class="sliders" id="ed-sliders"></div>
+    </div>
+  </section>
+</div>
+
+<div id="asheet" class="asheet" hidden><div class="ascard"><p id="as-msg"></p><div id="as-btns"></div></div><button class="ascancel" id="as-cancel">取消</button></div>
+<div id="toast" class="toast"></div>
+<input type="file" id="importer" accept="image/*,video/*" multiple hidden>
+<canvas id="capgl" hidden></canvas>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

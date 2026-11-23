@@ -1,0 +1,1 @@
+{ "version": "0.0.1", "configurations": [ { "name": "softcam", "runtimeExecutable": "node", "runtimeArgs": ["tools/serve.mjs", "5321"], "port": 5321 } ] }
